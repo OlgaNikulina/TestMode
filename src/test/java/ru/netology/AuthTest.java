@@ -23,7 +23,7 @@ class AuthTest {
     Faker faker;
 
     private static RequestSpecification requestSpec = new RequestSpecBuilder()
-            .setBaseUri("http://localhost:9999")
+            .setBaseUri("http://localhost")
             .setPort(9999)
             .setAccept(ContentType.JSON)
             .setContentType(ContentType.JSON)

@@ -1,3 +1,4 @@
+package ru.netology;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,12 +7,11 @@ import com.github.javafaker.Faker;
 
 import java.util.Locale;
 
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Post {
-    String name;
+    String login;
     String password;
     String status;
 
