@@ -11,6 +11,7 @@ import lombok.Value;
 
 import java.util.Locale;
 
+import static io.restassured.RestAssured.defaultParser;
 import static io.restassured.RestAssured.given;
 
 @Data
@@ -37,7 +38,7 @@ public class DataGenerator {
     static void setUser(DataGenerator.RegistrationDto dataGenerator) {
         given()
                 .spec(requestSpec)
-                .body(new RegistrationDto(dataGenerator.getLogin(), dataGenerator.getPassword(), dataGenerator.getStatus()))
+                .body(dataGenerator)
                 .when()
                 .post("/api/system/users")
                 .then()
@@ -45,13 +46,13 @@ public class DataGenerator {
     }
 
     static String generateRandomName() {
-        Faker faker = new Faker(new Locale("ru"));
+        Faker faker = new Faker(new Locale("en"));
         return faker.name().firstName();
     }
 
     static String generatePassword() {
-        Faker faker = new Faker(new Locale("ru"));
-        return faker.letterify("123456");
+        Faker faker = new Faker(new Locale("en"));
+        return faker.internet().password();
     }
 
     public static RegistrationDto getAuthWithCorrectValues() {
@@ -76,13 +77,17 @@ public class DataGenerator {
         String login = "l";
         String password = generatePassword();
         String status = "active";
-        return new RegistrationDto(login, password, status);
+        RegistrationDto registrationDto = new RegistrationDto(login, password, status);
+        setUser(registrationDto);
+        return registrationDto;
     }
 
     public static RegistrationDto getNotAuthWithInvalidPassword() {
         String login = generateRandomName();
         String password = "l";
         String status = "active";
-        return new RegistrationDto(login, password, status);
+        RegistrationDto registrationDto = new RegistrationDto(login, password, status);
+        setUser(registrationDto);
+        return registrationDto;
     }
 }

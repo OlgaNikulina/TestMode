@@ -18,7 +18,7 @@ class AuthTest {
         $("input.input__control[type='text']").sendKeys(Keys.TAB);
         $("input.input__control[type='password']").setValue(dataGenerator.getPassword());
         $$("span.button__text").find(exactText("Продолжить")).click();
-        $("span").shouldBe(visible);
+        $("div.App_appContainer__3jRx1").shouldBe(visible);
     }
 
     @Test
@@ -29,7 +29,7 @@ class AuthTest {
         $("input.input__control[type='text']").sendKeys(Keys.TAB);
         $("input.input__control[type='password']").setValue(dataGenerator.getPassword());
         $$("span.button__text").find(exactText("Продолжить")).click();
-        $("span").shouldBe(visible);
+        $("div.App_appContainer__3jRx1").shouldBe(visible);
     }
 
     @Test
