@@ -18,7 +18,7 @@ class AuthTest {
         $("input.input__control[type='text']").sendKeys(Keys.TAB);
         $("input.input__control[type='password']").setValue(dataGenerator.getPassword());
         $$("span.button__text").find(exactText("Продолжить")).click();
-        $("div.notification__title").shouldBe(visible);
+        $("span").shouldBe(visible);
     }
 
     @Test
@@ -29,7 +29,7 @@ class AuthTest {
         $("input.input__control[type='text']").sendKeys(Keys.TAB);
         $("input.input__control[type='password']").setValue(dataGenerator.getPassword());
         $$("span.button__text").find(exactText("Продолжить")).click();
-        $("div.notification__title").shouldBe(visible);
+        $("span").shouldBe(visible);
     }
 
     @Test
@@ -40,7 +40,7 @@ class AuthTest {
         $("input.input__control[type='text']").sendKeys(Keys.TAB);
         $("input.input__control[type='password']").setValue(dataGenerator.getPassword());
         $$("span.button__text").find(exactText("Продолжить")).click();
-        $("div.notification__title").shouldBe(visible);
+        $("[data-test-id=error-notification] .notification__title").shouldBe(visible);
     }
 
     @Test
@@ -51,6 +51,6 @@ class AuthTest {
         $("input.input__control[type='text']").sendKeys(Keys.TAB);
         $("input.input__control[type='password']").setValue(dataGenerator.getPassword());
         $$("span.button__text").find(exactText("Продолжить")).click();
-        $("div.notification__title").shouldBe(visible);
+        $("[data-test-id=error-notification] .notification__title").shouldBe(visible);
     }
 }

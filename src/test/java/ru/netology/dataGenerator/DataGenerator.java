@@ -20,9 +20,9 @@ public class DataGenerator {
 
     @Value
     public static class RegistrationDto {
-        String login;
-        String password;
-        String status;
+        private String login;
+        private String password;
+        private String status;
     }
 
     private static RequestSpecification
@@ -37,7 +37,7 @@ public class DataGenerator {
     static void setUser(DataGenerator.RegistrationDto dataGenerator) {
         given()
                 .spec(requestSpec)
-                .body(new RegistrationDto("vasya", "password", "active"))
+                .body(new RegistrationDto(dataGenerator.getLogin(), dataGenerator.getPassword(), dataGenerator.getStatus()))
                 .when()
                 .post("/api/system/users")
                 .then()
@@ -55,18 +55,34 @@ public class DataGenerator {
     }
 
     public static RegistrationDto getAuthWithCorrectValues() {
-        return new RegistrationDto(generateRandomName(), generatePassword(), "active");
+        String login = generateRandomName();
+        String password = generatePassword();
+        String status = "active";
+        RegistrationDto registrationDto = new RegistrationDto(login, password, status);
+        setUser(registrationDto);
+        return registrationDto;
     }
 
     public static RegistrationDto getAuthWithBlockedStatus() {
-        return new RegistrationDto(generateRandomName(), generatePassword(), "blocked");
+        String login = generateRandomName();
+        String password = generatePassword();
+        String status = "blocked";
+        RegistrationDto registrationDto = new RegistrationDto(login, password, status);
+        setUser(registrationDto);
+        return registrationDto;
     }
 
     public static RegistrationDto getNotAuthWithInvalidLogin() {
-        return new RegistrationDto("дддд", generatePassword(), "blocked");
+        String login = "l";
+        String password = generatePassword();
+        String status = "active";
+        return new RegistrationDto(login, password, status);
     }
 
     public static RegistrationDto getNotAuthWithInvalidPassword() {
-        return new RegistrationDto(generateRandomName(), "llkjkk", "active");
+        String login = generateRandomName();
+        String password = "l";
+        String status = "active";
+        return new RegistrationDto(login, password, status);
     }
 }
