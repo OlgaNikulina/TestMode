@@ -1,8 +1,8 @@
-package ru.netology.Test;
+package ru.netology.test;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import ru.netology.dataGenerator.DataGenerator;
+import ru.netology.datagenerator.DataGenerator;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;

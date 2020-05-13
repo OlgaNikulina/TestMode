@@ -1,4 +1,4 @@
-package ru.netology.dataGenerator;
+package ru.netology.datagenerator;
 
 
 import com.github.javafaker.Faker;
@@ -11,7 +11,6 @@ import lombok.Value;
 
 import java.util.Locale;
 
-import static io.restassured.RestAssured.defaultParser;
 import static io.restassured.RestAssured.given;
 
 @Data
@@ -74,20 +73,20 @@ public class DataGenerator {
     }
 
     public static RegistrationDto getNotAuthWithInvalidLogin() {
-        String login = "l";
-        String password = generatePassword();
+        String login = generateRandomName();
+        String password = generatePassword();;
         String status = "active";
         RegistrationDto registrationDto = new RegistrationDto(login, password, status);
         setUser(registrationDto);
-        return registrationDto;
+        return new RegistrationDto("l",password, status);
     }
 
     public static RegistrationDto getNotAuthWithInvalidPassword() {
         String login = generateRandomName();
-        String password = "l";
+        String password = generatePassword();;
         String status = "active";
         RegistrationDto registrationDto = new RegistrationDto(login, password, status);
         setUser(registrationDto);
-        return registrationDto;
+        return new RegistrationDto(login,"l", status);
     }
 }
